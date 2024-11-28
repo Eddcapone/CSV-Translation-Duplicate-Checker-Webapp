@@ -2,6 +2,8 @@
 
 The **CSV Translation Duplicate Checker** is a web application designed to assist in managing and validating translation strings. By uploading a CSV file of existing translations and entering new translation strings, users can check for duplicates, matches, and unmatched entries efficiently.
 
+**Note**: There is also a python / .exe Version for this application [here](https://github.com/Eddcapone/CSV-Translation-Duplicate-Checker).
+
 ## Features
 
 - **CSV Upload**: Easily upload a CSV file containing existing translations.
