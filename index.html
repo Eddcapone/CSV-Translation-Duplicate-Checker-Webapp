@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Translation Duplicate Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .result-section {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+        .progress {
+            height: 20px;
+            background-color: #e0e0e0;
+            margin-top: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #4caf50;
+            transition: width 0.5s ease;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSV Translation Duplicate Checker</h1>
+        <form id="csv-form" enctype="multipart/form-data">
+            <label for="csv-file">Upload CSV File:</label>
+            <input type="file" id="csv-file" name="csv" accept=".csv"><br><br>
+            
+            <label for="word-list">Enter Words to Check (one per line):</label>
+            <textarea id="word-list" name="word-list"></textarea><br><br>
+            
+            <input type="checkbox" id="show-not-found" name="show-not-found" disabled>
+            <label for="show-not-found">List Not Found Words</label><br>
+            
+            <input type="checkbox" id="show-duplicates" name="show-duplicates" disabled>
+            <label for="show-duplicates">Show Duplicates</label><br><br>
+            
+            <button type="button" onclick="submitForm()">Check Words</button>
+        </form>
+
+        <div class="progress">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div class="result-section" id="results"></div>
+    </div>
+
+    <script>
+        function enableCheckboxes() {
+            document.getElementById('show-not-found').disabled = false;
+            document.getElementById('show-duplicates').disabled = false;
+        }
+
+        function submitForm() {
+            const formData = new FormData(document.getElementById('csv-form'));
+            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = '0%';
+
+            fetch('process.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                progressBar.style.width = '100%';
+
+                // Enable checkboxes after processing
+                enableCheckboxes();
+
+                // Ensure response fields are arrays
+                const found = Array.isArray(data.found) ? data.found : [];
+                const notFound = Array.isArray(data.notFound) ? data.notFound : [];
+                const duplicates = Array.isArray(data.duplicates) ? data.duplicates : [];
+
+                // Generate result lists
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = `
+                    <h2>Results</h2>
+                    <div>
+                        <strong>Found Words:</strong>
+                        <ul>${found.map(word => `<li>${word}</li>`).join('')}</ul>
+                    </div>
+                `;
+
+                if (document.getElementById('show-not-found').checked && notFound.length > 0) {
+                    resultsDiv.innerHTML += `
+                        <div>
+                            <strong>Not Found Words:</strong>
+                            <ul>${notFound.map(word => `<li>${word}</li>`).join('')}</ul>
+                        </div>
+                    `;
+                }
+
+                if (document.getElementById('show-duplicates').checked && duplicates.length > 0) {
+                    resultsDiv.innerHTML += `
+                        <div>
+                            <strong>Duplicates:</strong>
+                            <ul>${duplicates.map(word => `<li>${word}</li>`).join('')}</ul>
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                alert('An error occurred: ' + error.message);
+            });
+        }
+    </script>
+</body>
+</html>
