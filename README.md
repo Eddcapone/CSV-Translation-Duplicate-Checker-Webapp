@@ -4,20 +4,6 @@ The **CSV Translation Duplicate Checker** is a web application designed to assis
 
 **Note**: There is also a python / .exe Version for this application [here](https://github.com/Eddcapone/CSV-Translation-Duplicate-Checker).
 
-## Features
-
-- **CSV Upload**: Easily upload a CSV file containing existing translations.
-- **Dynamic Input**: Enter new translation strings directly into the browser.
-- **Real-Time Matching**:
-  - **Found Words**: Strings from the input list that already exist in the CSV.
-  - **Not Found Words**: Strings from the input list that are not in the CSV.
-  - **Duplicates**: Strings in the CSV that are duplicated.
-- **Customizable Results**:
-  - Enable or disable the display of unmatched words and duplicates with simple checkboxes.
-- **User-Friendly Interface**:
-  - Results displayed as lists for better readability.
-  - Progress bar to indicate the processing status.
-
 ## How to Use
 
 1. **Clone the Repository**:
@@ -64,7 +50,24 @@ Prix
 
 ### Example Output (Displayed in the Browser):
 
-<screenshot einfügen>
+![image](https://github.com/user-attachments/assets/d1518a58-51b4-4754-aca6-8d879ea9341b)
+
+
+## Features
+
+- **CSV Upload**: Easily upload a CSV file containing existing translations.
+- **Dynamic Input**: Enter new translation strings directly into the browser.
+- **Case Sensitivity**:
+  - A "Case Sensitive" checkbox lets you control whether matches and duplicates should respect the case of characters.
+- **Real-Time Matching**:
+  - **Found Words**: Strings from the input list that already exist in the CSV.
+  - **Not Found Words**: Strings from the input list that are not in the CSV.
+  - **Duplicates**: Strings in the CSV that are duplicated.
+- **Customizable Results**:
+  - Enable or disable the display of unmatched words and duplicates with simple checkboxes.
+- **User-Friendly Interface**:
+  - Results displayed as lists for better readability.
+  - Progress bar to indicate the processing status.
 
 ## Notes
 - Strings are compared without case sensitivity or surrounding quotes (e.g., "Password Strength" and password strength are treated as equal).
