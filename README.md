@@ -23,7 +23,7 @@ The **CSV Translation Duplicate Checker** is a web application designed to assis
 
 5. **View Results:**
 
-- Found Words: A list of strings from the input that match entries in the CSV.
+- Found Conflicts: A list of strings from the input that match entries in the CSV.
 - Not Found Words (if enabled): Strings from the input that do not match any entry in the CSV.
 - Duplicates (if enabled): Entries in the CSV that are duplicated.
 
@@ -67,7 +67,7 @@ Prix
 - **Case Sensitivity**:
   - A "Case Sensitive" checkbox lets you control whether matches and duplicates should respect the case of characters.
 - **Real-Time Matching**:
-  - **Found Words**: Strings from the input list that already exist in the CSV.
+  - **Found Conflicts**: Strings from the input list that already exist in the CSV.
   - **Not Found Words**: Strings from the input list that are not in the CSV.
   - **Duplicates**: Strings in the CSV that are duplicated.
 - **Customizable Results**:
