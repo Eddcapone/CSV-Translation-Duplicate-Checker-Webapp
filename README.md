@@ -50,7 +50,7 @@ Prix
 
 ### Example Output (Displayed in the Browser):
 
-![image](https://github.com/user-attachments/assets/d1518a58-51b4-4754-aca6-8d879ea9341b)
+![image](https://github.com/user-attachments/assets/d098b39e-69f8-4008-8a2e-ec701b381dd6)
 
 
 ## Features
