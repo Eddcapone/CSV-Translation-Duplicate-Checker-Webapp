@@ -51,6 +51,8 @@ Prix
 ### Example Output (Displayed in the Browser):
 
 ![image](https://github.com/user-attachments/assets/d098b39e-69f8-4008-8a2e-ec701b381dd6)
+![image](https://github.com/user-attachments/assets/ddb8267f-a0bb-44e5-b52f-041ce9b06476)
+
 
 
 ## Features
