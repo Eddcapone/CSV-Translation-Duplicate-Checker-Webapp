@@ -10,11 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $wordList = isset($_POST['word-list']) ? explode("\n", $_POST['word-list']) : [];
     $showNotFound = isset($_POST['show-not-found']);
     $showDuplicates = isset($_POST['show-duplicates']);
+    $case_sensitive = isset($_POST['case_sensitive']); // Check if case sensitivity is enabled
 
     // Normalize input words
-    $normalize = function($words) {
-        return array_map(function($word) {
-            return strtolower(trim($word, " \t\n\r\0\x0B\"'"));
+    $normalize = function($words) use ($case_sensitive) {
+        return array_map(function($word) use ($case_sensitive) {
+            $word = trim($word, " \t\n\r\0\x0B\"'");
+            return $case_sensitive ? $word : strtolower($word);
         }, $words);
     };
 
@@ -25,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $allCsvValues = [];
     if (($handle = fopen($csvFile, 'r')) !== false) {
         while (($row = fgetcsv($handle)) !== false) {
-            if (isset($row[0])) $csvContent[] = strtolower(trim($row[0], " \t\n\r\0\x0B\"'"));
-            if (isset($row[1])) $csvContent[] = strtolower(trim($row[1], " \t\n\r\0\x0B\"'"));
+            if (isset($row[0])) $csvContent[] = $case_sensitive ? trim($row[0], " \t\n\r\0\x0B\"'") : strtolower(trim($row[0], " \t\n\r\0\x0B\"'"));
+            if (isset($row[1])) $csvContent[] = $case_sensitive ? trim($row[1], " \t\n\r\0\x0B\"'") : strtolower(trim($row[1], " \t\n\r\0\x0B\"'"));
             $allCsvValues = array_merge($allCsvValues, array_slice($row, 0, 2));
         }
         fclose($handle);

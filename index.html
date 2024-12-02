@@ -48,16 +48,25 @@
         <form id="csv-form" enctype="multipart/form-data">
             <label for="csv-file">Upload CSV File:</label>
             <input type="file" id="csv-file" name="csv" accept=".csv"><br><br>
-            
+
             <label for="word-list">Enter Words to Check (one per line):</label>
             <textarea id="word-list" name="word-list"></textarea><br><br>
-            
-            <input type="checkbox" id="show-not-found" name="show-not-found" disabled>
-            <label for="show-not-found">List Not Found Words</label><br>
-            
-            <input type="checkbox" id="show-duplicates" name="show-duplicates" disabled>
-            <label for="show-duplicates">Show Duplicates</label><br><br>
-            
+
+            <label for="case_sensitive">
+                <input type="checkbox" id="case_sensitive" name="case_sensitive" checked>
+                Case Sensitive
+            </label><br>
+
+            <label for="show-not-found">
+                <input type="checkbox" id="show-not-found" name="show-not-found" disabled>
+                List Not Found Words
+            </label><br>
+
+            <label for="show-duplicates">
+                <input type="checkbox" id="show-duplicates" name="show-duplicates" disabled>
+                Show Duplicates
+            </label><br><br>
+
             <button type="button" onclick="submitForm()">Check Words</button>
         </form>
 
