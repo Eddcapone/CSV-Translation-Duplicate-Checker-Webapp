@@ -50,7 +50,12 @@ Prix
 
 ### Example Output (Displayed in the Browser):
 
+#### Example A:
+
 ![image](https://github.com/user-attachments/assets/d098b39e-69f8-4008-8a2e-ec701b381dd6)
+
+#### Example B:
+
 ![image](https://github.com/user-attachments/assets/ddb8267f-a0bb-44e5-b52f-041ce9b06476)
 
 
